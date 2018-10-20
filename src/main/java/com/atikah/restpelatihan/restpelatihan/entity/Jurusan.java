@@ -4,29 +4,35 @@ import java.io.Serializable;
 
 public class Jurusan implements Serializable {
 
-    private int idJurusan;
+    private int id;
     private int idFakultas;
-    private String namaJurusan;
+    private String nama;
+    private Fakultas fakultas;//object join
 
-    public Jurusan(){
-
+    public Jurusan(int id){
+        this.id= id;
     }
 
-    public Jurusan(int idJurusan, int idFakultas){
-        this.idJurusan=idJurusan;
+    public Jurusan(int id, int idFakultas){
+        this.id = id;
         this.idFakultas=idFakultas;
     }
 
-    public Jurusan (String namaJurusan){
-        this.namaJurusan=namaJurusan;
+    public Jurusan (String nama){
+        this.nama = nama;
     }
 
-    public int getIdJurusan() {
-        return idJurusan;
+    public Jurusan() {
+        this.id= id;
     }
 
-    public void setIdJurusan(int idJurusan) {
-        this.idJurusan = idJurusan;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdFakultas() {
@@ -36,22 +42,32 @@ public class Jurusan implements Serializable {
     public void setIdFakultas(int idFakultas) {
         this.idFakultas = idFakultas;
     }
-
-
-    public String getNamaJurusan() {
-        return namaJurusan;
+//join
+    public Fakultas getFakultas() {
+        return fakultas;
     }
 
-    public void setNamaJurusan(String namaJurusan) {
-        this.namaJurusan = namaJurusan;
+    public void setFakultas(Fakultas fakultas) {
+        this.fakultas = fakultas;
     }
+    //
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+
 
     @Override
     public String toString() {
         return "Jurusan{" +
-                "idJurusan=" + idJurusan +
+                "id=" + id +
+                ", nama='" + nama + '\'' +
                 "idFakultas='" + idFakultas +
-                ", namaJurusan='" + namaJurusan + '\'' +
                 '}';
     }
 }

@@ -1,47 +1,50 @@
 package com.atikah.restpelatihan.restpelatihan.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class Fakultas implements Serializable {
+public class Fakultas  implements Serializable {
 
-    private int idFakultas;
-    private  String namaFakultas;
+    private int id;
+    private  String nama;
 
-    public Fakultas(){
+    //tambah
 
+    public Fakultas(){ this.id=id;
     }
 
-    public Fakultas (int idFakultas){
-        this.idFakultas= idFakultas;
+    public Fakultas (int id){
+        this.id = id;
     }
 
-    public Fakultas (String namaFakultas){
+    public Fakultas (String nama){
 
-        this.namaFakultas= namaFakultas;
+        this.nama = nama;
     }
 
-    public int getIdFakultas() {
-        return idFakultas;
+    public int getId() {
+        return id;
     }
 
-    public void setIdFakultas(int idFakultas) {
-        this.idFakultas = idFakultas;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNamaFakultas() {
-        return namaFakultas;
+    public String getNama() {
+        return nama;
     }
 
-    public void setNamaFakultas(String namaFakultas) {
-        this.namaFakultas = namaFakultas;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
+
+
+
 
     @Override
     public String toString() {
         return "Fakultas{" +
-                "idFakultas=" + idFakultas +
-                ", namaFakultas='" + namaFakultas + '\'' +
+                "id=" + id +
+                ", nama_='" + nama + '\'' +
                 '}';
     }
 }

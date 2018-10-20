@@ -1,15 +1,15 @@
 package com.atikah.restpelatihan.restpelatihan.controller;
 
 
+import com.atikah.restpelatihan.restpelatihan.entity.Fakultas;
 import com.atikah.restpelatihan.restpelatihan.entity.Jurusan;
 import com.atikah.restpelatihan.restpelatihan.service.JurusanService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+
 
 @RestController
 public class JurusanController {
@@ -26,13 +26,39 @@ public class JurusanController {
         return service.find();
     }
 
+    @GetMapping(value = "/jurusan/{id}")
+    public Jurusan findById(@PathVariable("id") Integer id) {
+        return service.findById(id);
+    }
+
+
     @PostMapping(value = "/jurusan")
     public String save(@RequestBody Jurusan jurusan) {
         Jurusan data = service.save(jurusan);
-        if (data.getIdJurusan() == 0) {
+        if (data.getId() == 0) {
             return "Gagal insert data";
         } else {
             return "Insert data berhasil";
+        }
+    }
+
+    @PutMapping(value = "/jurusan")
+    public String update(@RequestBody Jurusan jurusan) {
+        Jurusan data = service.update(jurusan);
+        if (data.getId() == 0) {
+            return "Gagal update data";
+        } else {
+            return "Update data berhasil";
+        }
+    }
+
+    @DeleteMapping(value = "/jurusan/{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        int data = service.delete(new Jurusan(id));
+        if (data == 0) {
+            return "Gagal delete data";
+        } else {
+            return "Delete data berhasil";
         }
     }
 

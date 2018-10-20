@@ -3,6 +3,7 @@ package com.atikah.restpelatihan.restpelatihan.service.impl;
 
 import com.atikah.restpelatihan.restpelatihan.dao.FakultasDAO;
 import com.atikah.restpelatihan.restpelatihan.dao.JurusanDAO;
+import com.atikah.restpelatihan.restpelatihan.entity.Fakultas;
 import com.atikah.restpelatihan.restpelatihan.entity.Jurusan;
 import com.atikah.restpelatihan.restpelatihan.service.JurusanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,23 +13,30 @@ import java.util.List;
 @Service
 public class JurusanServiceImpl implements JurusanService {
 
+
     @Autowired
     private JurusanDAO jurusanDAO;
+
+//    //tambah
+//    @Autowired
+//    private FakultasDAO fakultasDAO;
+
 
 
     @Override
     public Jurusan save(Jurusan param) {
         return jurusanDAO.save(param);
+//        return fakultasDAO.save(param); //tambah
     }
 
     @Override
     public Jurusan update(Jurusan param) {
-        return null;
+        return jurusanDAO.update(param);
     }
 
     @Override
     public int delete(Jurusan param) {
-        return 0;
+        return jurusanDAO.delete(param);
     }
 
 
@@ -39,24 +47,10 @@ public class JurusanServiceImpl implements JurusanService {
     }
 
     @Override
-    public Jurusan findById(int idFakultas) {
-        return null;
+    public Jurusan findById(int id) {
+        return jurusanDAO.findById(id);
     }
 
-    @Override
-    public Jurusan findByJurusan(int idJurusan) {
-        return null;
-    }
-
-    @Override
-    public Jurusan fidByMahasiswa(int npmMhs) {
-        return null;
-    }
-
-    @Override
-    public Jurusan fidByKrs(int idKrs) {
-        return null;
-    }
 
 
 }

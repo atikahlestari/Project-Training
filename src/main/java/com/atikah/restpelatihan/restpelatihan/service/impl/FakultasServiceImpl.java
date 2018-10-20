@@ -21,16 +21,17 @@ public class FakultasServiceImpl  implements FakultasService{
         return  fakultasDAO.save(param);
     }
 
+
     @Override
     public Fakultas update(Fakultas param){
 
-        return null;
-//                fakultasDAO.update(param);
+       return  fakultasDAO.update(param);
     }
 
     @Override
     public int delete(Fakultas param){
-        return 0;
+
+        return fakultasDAO.delete(param);
     }
 
     @Override
@@ -40,23 +41,9 @@ public class FakultasServiceImpl  implements FakultasService{
     }
 
     @Override
-    public Fakultas findById(int id_fakultas){
-        return null;
+    public Fakultas findById(int id) {
+        return fakultasDAO.findById(id);
     }
 
-    @Override
-    public Fakultas findByJurusan(int idJurusan) {
-        return null;
-    }
-
-    @Override
-    public Fakultas fidByMahasiswa(int npmMhs) {
-        return null;
-    }
-
-    @Override
-    public Fakultas fidByKrs(int idKrs) {
-        return null;
-    }
 
 }

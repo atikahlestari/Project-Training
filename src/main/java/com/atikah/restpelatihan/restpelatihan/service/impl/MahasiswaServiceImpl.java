@@ -21,12 +21,12 @@ public class MahasiswaServiceImpl implements MahasiswaService {
 
     @Override
     public Mahasiswa update(Mahasiswa param) {
-        return null;
+        return mahasiswaDAO.update(param);
     }
 
     @Override
     public int delete(Mahasiswa param) {
-        return 0;
+        return mahasiswaDAO.delete(param);
     }
 
     @Override
@@ -35,22 +35,9 @@ public class MahasiswaServiceImpl implements MahasiswaService {
     }
 
     @Override
-    public Mahasiswa findById(int idFakultas) {
-        return null;
+    public Mahasiswa findById(int id) {
+        return mahasiswaDAO.findById(id);
     }
 
-    @Override
-    public Mahasiswa findByJurusan(int idJurusan) {
-        return null;
-    }
 
-    @Override
-    public Mahasiswa fidByMahasiswa(int npmMhs) {
-        return null;
-    }
-
-    @Override
-    public Mahasiswa fidByKrs(int idKrs) {
-        return null;
-    }
 }

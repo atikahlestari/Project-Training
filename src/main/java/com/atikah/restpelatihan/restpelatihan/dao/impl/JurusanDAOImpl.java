@@ -2,15 +2,20 @@ package com.atikah.restpelatihan.restpelatihan.dao.impl;
 
         import com.atikah.restpelatihan.restpelatihan.common.Table;
         import com.atikah.restpelatihan.restpelatihan.dao.JurusanDAO;
+        import com.atikah.restpelatihan.restpelatihan.entity.Fakultas;
         import com.atikah.restpelatihan.restpelatihan.entity.Jurusan;
         import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.dao.EmptyResultDataAccessException;
         import org.springframework.jdbc.core.BeanPropertyRowMapper;
         import org.springframework.jdbc.core.JdbcTemplate;
+        import org.springframework.jdbc.core.RowMapper;
         import org.springframework.jdbc.support.GeneratedKeyHolder;
         import org.springframework.jdbc.support.KeyHolder;
 
         import org.springframework.stereotype.Repository;
         import java.sql.PreparedStatement;
+        import java.sql.ResultSet;
+        import java.sql.SQLException;
         import java.sql.Statement;
         import java.util.List;
         import java.util.Objects;
@@ -23,54 +28,83 @@ public class JurusanDAOImpl implements JurusanDAO {
 
     @Override
     public Jurusan save(Jurusan param) {
-        String sql = "INSERT INTO " + Table.TABLE_Jurusan + " ( id_fakultas, nama_jurusan) VALUES (?,?)";
+        String sql = "INSERT INTO " + Table.TABLE_JURUSAN + " (nama, idFakultas) VALUES (?,?)";
 
         final KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, param.getIdFakultas());
-            ps.setString(2, param.getNamaJurusan());
+            ps.setString(1, param.getNama());
+            ps.setInt(2, param.getIdFakultas());
             return ps;
         }, keyHolder);
-        param.setIdJurusan(Objects.requireNonNull(keyHolder.getKey()).intValue());
+        param.setId(Objects.requireNonNull(keyHolder.getKey()).intValue());
         return param;
     }
 
     @Override
     public Jurusan update(Jurusan param) {
-        return null;
+        String sql= "UPDATE " + Table.TABLE_JURUSAN +  " SET "+
+                "nama = ?, idFakultas = ? WHERE id = ?";
+
+        jdbcTemplate.update(sql,
+                param.getNama(),
+                param.getIdFakultas(),
+                param.getId());
+        return param;
     }
 
     @Override
     public int delete(Jurusan param) {
-        return 0;
+        String sql= "DELETE FROM " + Table.TABLE_JURUSAN  + " WHERE id = ? ";
+        final int delete = jdbcTemplate.update(sql, param.getId());
+        return delete;
     }
 
     @Override
     public List<Jurusan> find() {
-        String sql = "SELECT * FROM " + Table.TABLE_Jurusan;
+        String sql = "SELECT " +
+                "jurusan.id AS id, " +
+                "fakultas.id AS idFakultas, " +
+                "jurusan.nama AS nama, " +
+                "fakultas.nama AS namaFakultas " +
+                "FROM " + Table.TABLE_JURUSAN + " jurusan INNER JOIN " + Table.TABLE_FAKULTAS +
+                " fakultas ON jurusan.idFakultas = fakultas.id";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Jurusan.class));
+
+
+    //ganti imi
+        return jdbcTemplate.query(sql, new RowMapper<Jurusan>() {
+            //rowmapper menyamakan antara variabel dan database
+            @Override
+            public Jurusan mapRow(ResultSet rs, int rowNum) throws SQLException {
+               Jurusan jurusan=new Jurusan();
+               jurusan.setId(rs.getInt("id"));
+               jurusan.setNama(rs.getString("nama"));
+               jurusan.setIdFakultas(rs.getInt("idFakultas"));
+
+
+               Fakultas fakultas=new Fakultas();
+               fakultas.setId(rs.getInt("idFakultas"));
+               fakultas.setNama(rs.getString("namaFakultas"));
+               jurusan.setFakultas(fakultas);
+                return jurusan;
+            }
+        });//sampe sini
     }
 
     @Override
-    public Jurusan findByFakultas(int idFakultas) {
+    public Jurusan findById(int id) {
+        String sql = "SELECT * FROM " + Table.TABLE_JURUSAN + " WHERE id = ?";
+
+        try {
+            return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Jurusan.class), id);
+        } catch (EmptyResultDataAccessException ignored) {
+        }
+
         return null;
     }
-
-    @Override
-    public Jurusan findByJurusan(int idJurusan) {
-        return null;
     }
 
-    @Override
-    public Jurusan findByMahasiswa(int npmMhs) {
-        return null;
-    }
 
-    @Override
-    public Jurusan findByKrs(int idKrs) {
-        return null;
-    }
 
-}
+

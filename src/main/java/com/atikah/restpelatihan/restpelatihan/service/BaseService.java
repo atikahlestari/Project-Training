@@ -10,10 +10,6 @@ public interface BaseService<T> {
 
     List<T> find();
 
-    T findById(int idFakultas);
+    T findById(int id);
 
-    T findByJurusan(int idJurusan);
-
-    T fidByMahasiswa (int npmMhs);
-    T fidByKrs (int idKrs);
 }

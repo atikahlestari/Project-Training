@@ -21,35 +21,38 @@ USE `universitas`;
 DROP TABLE IF EXISTS `tbl_fakultas`;
 
 CREATE TABLE `tbl_fakultas` (
-  `id_fakultas` int(30) NOT NULL AUTO_INCREMENT,
-  `nama_fakultas` varchar(55) DEFAULT NULL,
-  PRIMARY KEY (`id_fakultas`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `id` int(30) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(55) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_fakultas` */
 
-insert  into `tbl_fakultas`(`id_fakultas`,`nama_fakultas`) values 
-(1,'FTMIPA'),
-(2,'FIPPS'),
-(3,'FBS'),
-(4,'FIKOM');
+insert  into `tbl_fakultas`(`id`,`nama`) values 
+(1,'FIPPS'),
+(2,'FTMIPA'),
+(3,'FIKOM'),
+(4,'FKEB'),
+(5,'FPS');
 
 /*Table structure for table `tbl_jurusan` */
 
 DROP TABLE IF EXISTS `tbl_jurusan`;
 
 CREATE TABLE `tbl_jurusan` (
-  `id_jurusan` int(30) NOT NULL AUTO_INCREMENT,
-  `id_fakultas` int(30) DEFAULT NULL,
-  `nama_jurusan` varchar(55) DEFAULT NULL,
-  PRIMARY KEY (`id_jurusan`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `id` int(30) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(55) DEFAULT NULL,
+  `idFakultas` int(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_jurusan` */
 
-insert  into `tbl_jurusan`(`id_jurusan`,`id_fakultas`,`nama_jurusan`) values 
-(1,0,'Informatika'),
-(2,3,'TI');
+insert  into `tbl_jurusan`(`id`,`nama`,`idFakultas`) values 
+(1,'Bimbingan Konseling',1),
+(2,'Fisika',2),
+(3,'Informatika',3),
+(5,'Ekonomi',8);
 
 /*Table structure for table `tbl_krs` */
 
@@ -79,41 +82,47 @@ insert  into `tbl_krs`(`no`,`id_krs`,`npm_mhs`,`id_jurusan`,`id_matkul`,`dospem`
 DROP TABLE IF EXISTS `tbl_mahasiswa`;
 
 CREATE TABLE `tbl_mahasiswa` (
-  `npm_mhs` int(15) NOT NULL AUTO_INCREMENT,
-  `nama_mhs` varchar(55) DEFAULT NULL,
-  `tempatlahir_mhs` varchar(55) DEFAULT NULL,
-  `tgllahir_mhs` date DEFAULT NULL,
-  `alamat_mhs` varchar(100) DEFAULT NULL,
-  `ayah_mhs` varchar(55) DEFAULT NULL,
-  `ibu_mhs` varchar(55) DEFAULT NULL,
-  `id_jurusan` int(30) DEFAULT NULL,
-  PRIMARY KEY (`npm_mhs`)
-) ENGINE=InnoDB AUTO_INCREMENT=2014005 DEFAULT CHARSET=latin1;
+  `id` int(15) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(100) DEFAULT NULL,
+  `tempat` varchar(55) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `alamat` varchar(100) DEFAULT NULL,
+  `ayah` varchar(55) DEFAULT NULL,
+  `ibu` varchar(55) DEFAULT NULL,
+  `idJurusan` int(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2014010 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_mahasiswa` */
 
-insert  into `tbl_mahasiswa`(`npm_mhs`,`nama_mhs`,`tempatlahir_mhs`,`tgllahir_mhs`,`alamat_mhs`,`ayah_mhs`,`ibu_mhs`,`id_jurusan`) values 
-(2014001,'tegar','jakarta','2018-09-11','jauh beut','tukino','sumiati',0),
-(2014002,'novia','jakarta','2018-09-11','dekat dihati','mursid','mulyani',0),
-(2014003,'rio',NULL,NULL,'Bekasi','ayah','ibu',0),
-(2014004,'dina','bogor','2016-09-12','Cileungsi','Nano','nini',1010);
+insert  into `tbl_mahasiswa`(`id`,`nama`,`tempat`,`tanggal`,`alamat`,`ayah`,`ibu`,`idJurusan`) values 
+(2014001,'lestari','jakarta','2018-09-11','jauh beut','tukino','sumiati',1),
+(2014002,'novia','jakarta','2018-09-11','dekat dihati','mursid','mulyani',2),
+(2014003,'rio',NULL,NULL,'Bekasi','ayah','ibu',3),
+(2014004,'dina','bogor','2016-09-12','Cileungsi','Nano','nini',1),
+(2014005,'FKEB',NULL,NULL,NULL,NULL,NULL,2),
+(2014006,'FKEB',NULL,NULL,NULL,NULL,NULL,8),
+(2014007,'rere','jakarta','2018-09-11','jauh beut','lala','lulu',1),
+(2014008,'rere','jakarta','2018-09-11','jauh beut','lala','lulu',1),
+(2014009,'Kevin','jakarta','2018-09-11','jauh beut','tukino','sumiati',1);
 
 /*Table structure for table `tbl_matakuliah` */
 
 DROP TABLE IF EXISTS `tbl_matakuliah`;
 
 CREATE TABLE `tbl_matakuliah` (
-  `id_matkul` int(30) NOT NULL AUTO_INCREMENT,
-  `nama_matkul` varchar(55) DEFAULT NULL,
-  `sks_matkul` int(30) DEFAULT NULL,
-  PRIMARY KEY (`id_matkul`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `id` int(30) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(55) DEFAULT NULL,
+  `sks` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_matakuliah` */
 
-insert  into `tbl_matakuliah`(`id_matkul`,`nama_matkul`,`sks_matkul`) values 
-(1,'Pemrograman Web',9),
-(2,'RPL',2);
+insert  into `tbl_matakuliah`(`id`,`nama`,`sks`) values 
+(1,'KK','3'),
+(3,'KOMGRAF','3'),
+(4,'KK','3');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

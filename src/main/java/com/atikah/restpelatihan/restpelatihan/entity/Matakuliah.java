@@ -1,52 +1,57 @@
-//package com.atikah.restpelatihan.restpelatihan.entity;
-//
-//import java.io.Serializable;
-//
-//public class  Matakuliah implements Serializable {
-//   private  int idMatkul;
-//   private String namaMatkul;
-//   private String sksMatkul;
-//
-//   public Matakuliah(int idMatkul){
-//       this.idMatkul=idMatkul;
-//   }
-//
-//   public Matakuliah(String namaMatkul, String sksMatkul){
-//       this.namaMatkul=namaMatkul;
-//       this.sksMatkul=sksMatkul;
-//   }
-//
-//    public int getIdMatkul() {
-//        return idMatkul;
-//    }
-//
-//    public void setIdMatkul(int idMatkul) {
-//        this.idMatkul = idMatkul;
-//    }
-//
-//    public String getNamaMatkul() {
-//        return namaMatkul;
-//    }
-//
-//    public void setNamaMatkul(String namaMatkul) {
-//        this.namaMatkul = namaMatkul;
-//    }
-//
-//    public String getSksMatkul() {
-//        return sksMatkul;
-//    }
-//
-//    public void setSksMatkul(String sksMatkul) {
-//        this.sksMatkul = sksMatkul;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Matakuliah{" +
-//                "idMatkul=" + idMatkul +
-//                ", namaMatkul='" + namaMatkul + '\'' +
-//                ", sksMatkul='" + sksMatkul + '\'' +
-//                '}';
-//    }
-//
-//}
+package com.atikah.restpelatihan.restpelatihan.entity;
+
+import java.io.Serializable;
+
+public class  Matakuliah implements Serializable {
+   private  int id;
+   private String nama;
+   private String sks;
+
+  public Matakuliah(){
+       this.id=id;
+   }
+
+   public Matakuliah(int id){
+       this.id = id;
+   }
+
+   public Matakuliah(String nama, String sks){
+       this.nama = nama;
+       this.sks = sks;
+   }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getSks() {
+        return sks;
+    }
+
+    public void setSks(String sks) {
+        this.sks = sks;
+    }
+
+
+    @Override
+    public String toString() {
+    return "Matakuliah{" +
+                "id=" + id +
+                ", nama='" + nama + '\'' +
+                ", sks='" + sks + '\'' +
+                '}';
+    }
+
+}

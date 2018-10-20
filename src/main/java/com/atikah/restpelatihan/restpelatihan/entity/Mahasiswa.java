@@ -4,93 +4,112 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Mahasiswa implements Serializable {
-    private int npmMhs;
-    private String namaMhs;
-    private String tempatLahirMhs;
-    private Date tglLahirMhs;
-    private String alamatMhs;
-    private String ayahMhs;
-    private String ibuMhs;
+    private int id;
+    private String nama;
+    private String tempat;
+    private Date tanggal;
+    private String alamat;
+    private String ayah;
+    private String ibu;
     private int idJurusan;
 
-    public Mahasiswa(){
+    private Jurusan jurusan;
+    private Fakultas fakultas;
 
-    }
 
-    public Mahasiswa(int npmMhs, int idJurusan){
-    this.npmMhs=npmMhs;
+
+
+
+    public Mahasiswa(int id, int idJurusan){
+    this.id = id;
     this.idJurusan=idJurusan;
     }
 
-    public Mahasiswa(String namaMhs, String tempatLahirMhs,
-                     String alamatMhs, String ayahMhs, String ibuMhs){
+    public Mahasiswa(String nama, String tempat,
+                     String alamat, String ayah, String ibu){
 
-        this.namaMhs=namaMhs;
-        this.tempatLahirMhs=tempatLahirMhs;
-        this.alamatMhs=alamatMhs;
-        this.ayahMhs=ayahMhs;
-        this.ibuMhs=ibuMhs;
+        this.nama = nama;
+        this.tempat = tempat;
+        this.alamat = alamat;
+        this.ayah = ayah;
+        this.ibu = ibu;
     }
 
-    public Mahasiswa(Date tglLahirMhs){
+    public Mahasiswa(Date tanggal){
 
-        this.tglLahirMhs=tglLahirMhs;
+        this.tanggal = tanggal;
     }
 
-    public int getNpmMhs() {
-        return npmMhs;
+    public Mahasiswa(int id) {
+        this.id=id;
     }
 
-    public void setNpmMhs(int npmMhs) {
-        this.npmMhs = npmMhs;
+    public Mahasiswa() {
+
     }
 
-    public String getNamaMhs() {
-        return namaMhs;
+    public Fakultas getFakultas() {
+        return fakultas;
     }
 
-    public void setNamaMhs(String namaMhs) {
-        this.namaMhs = namaMhs;
+    public void setFakultas(Fakultas fakultas) {
+        this.fakultas = fakultas;
     }
 
-    public String getTempatLahirMhs() {
-        return tempatLahirMhs;
+    public int getId() {
+        return id;
     }
 
-    public void setTempatLahirMhs(String tempatLahirMhs) {
-        this.tempatLahirMhs = tempatLahirMhs;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public  Date getTglLahirMhs() {
-        return tglLahirMhs;
+    public String getNama() {
+        return nama;
     }
 
-    public void setTglLahirMhs(Date tglLahirMhs) {
-        this.tglLahirMhs = tglLahirMhs;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
-    public String getAlamatMhs() {
-        return alamatMhs;
+    public String getTempat() {
+        return tempat;
     }
 
-    public void setAlamatMhs(String alamatMhs) {
-        this.alamatMhs = alamatMhs;
+    public void setTempat(String tempat) {
+        this.tempat = tempat;
     }
 
-    public String getAyahMhs() {
-        return ayahMhs;
+    public  Date getTanggal() {
+        return tanggal;
     }
 
-    public void setAyahMhs(String ayahMhs) {
-        this.ayahMhs = ayahMhs;
+    public void setTanggal(Date tanggal) {
+        this.tanggal = tanggal;
     }
 
-    public String getIbuMhs() {
-        return ibuMhs;
+    public String getAlamat() {
+        return alamat;
     }
 
-    public void setIbuMhs(String ibuMhs) {
-        this.ibuMhs = ibuMhs;
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public String getAyah() {
+        return ayah;
+    }
+
+    public void setAyah(String ayah) {
+        this.ayah = ayah;
+    }
+
+    public String getIbu() {
+        return ibu;
+    }
+
+    public void setIbu(String ibu) {
+        this.ibu = ibu;
     }
 
     public int getIdJurusan() {
@@ -101,16 +120,24 @@ public class Mahasiswa implements Serializable {
         this.idJurusan = idJurusan;
     }
 
+    public Jurusan getJurusan() {
+        return jurusan;
+    }
+
+    public void setJurusan(Jurusan jurusan) {
+        this.jurusan = jurusan;
+    }
+
     @Override
     public String toString() {
         return "Mahasiswa{" +
-                "npmMhs=" + npmMhs +
-                ", namaMhs='" + namaMhs + '\'' +
-                ", tempatLahirMhs='" + tempatLahirMhs + '\'' +
-                "tglLahirMhs=" + tglLahirMhs +
-                ", alamatMhs='" + alamatMhs + '\'' +
-                ", ayahMhs='" + ayahMhs + '\'' +
-                ", ibuMhs='" + ibuMhs + '\'' +
+                "id=" + id +
+                ", nama='" + nama + '\'' +
+                ", tempat='" + tempat + '\'' +
+                "tanggal=" + tanggal +
+                ", alamat='" + alamat + '\'' +
+                ", ayah='" + ayah + '\'' +
+                ", ibu='" + ibu + '\'' +
                 "idJurusan=" + idJurusan +
                 '}';
     }
